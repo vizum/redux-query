@@ -315,7 +315,11 @@ const queryMiddlewareAdvanced = networkInterface => (
         const pendingQueries = getPendingQueries(queries);
 
         if (queryKey in pendingQueries) {
-          pendingQueries[queryKey].networkHandler.abort();
+          if (pendingQueries[queryKey].networkHandler.abort) {
+            pendingQueries[queryKey].networkHandler.abort();
+          } else {
+            console.warn('Trying to abort a request that is no more available: ', queryKey);
+          }
           returnValue = next(action);
         } else {
           console.warn('Trying to cancel a request that is not in flight: ', queryKey);
@@ -331,7 +335,11 @@ const queryMiddlewareAdvanced = networkInterface => (
 
         for (const queryKey in pendingQueries) {
           if (pendingQueries.hasOwnProperty(queryKey)) {
-            pendingQueries[queryKey].networkHandler.abort();
+            if (pendingQueries[queryKey].networkHandler.abort) {
+              pendingQueries[queryKey].networkHandler.abort();
+            } else {
+              console.warn('Trying to abort a request that is no more available: ', queryKey);
+            }
           }
         }
 
