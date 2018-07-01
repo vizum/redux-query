@@ -29,7 +29,7 @@ module.exports = {
     'redux-query/advanced': './src/advanced.js',
   },
   output: {
-    path: 'dist/umd',
+    path: path.resolve(__dirname, 'dist/umd'),
     filename: '[name].js',
     libraryTarget: 'umd',
     library: 'ReduxQuery',
@@ -52,7 +52,7 @@ module.exports = {
     loaders: [
       {
         test: /\.js$/,
-        loaders: ['babel'],
+        loaders: ['babel-loader'],
         include: path.join(__dirname, 'src'),
       },
     ]
