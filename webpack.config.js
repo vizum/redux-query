@@ -1,18 +1,16 @@
-'use strict';
-
 const path = require('path');
 const webpack = require('webpack');
 
-var env = process.env.NODE_ENV;
+const env = process.env.NODE_ENV;
 
-var reactExternal = {
+const reactExternal = {
   root: 'React',
   commonjs2: 'react',
   commonjs: 'react',
   amd: 'react',
 };
 
-var reduxExternal = {
+const reduxExternal = {
   root: 'Redux',
   commonjs2: 'redux',
   commonjs: 'redux',
@@ -20,9 +18,10 @@ var reduxExternal = {
 };
 
 module.exports = {
+  mode: 'production',
   externals: {
-    'react': reactExternal,
-    'redux': reduxExternal,
+    react: reactExternal,
+    redux: reduxExternal,
   },
   entry: {
     'redux-query': './src/index.js',
@@ -34,27 +33,21 @@ module.exports = {
     libraryTarget: 'umd',
     library: 'ReduxQuery',
   },
+  optimization: {
+    minimize: true,
+  },
   plugins: [
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(env),
     }),
-    new webpack.optimize.UglifyJsPlugin({
-      compressor: {
-        pure_getters: true,
-        unsafe: true,
-        unsafe_comps: true,
-        screw_ie8: true,
-        warnings: false
-      }
-    }),
   ],
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.js$/,
         loaders: ['babel-loader'],
         include: path.join(__dirname, 'src'),
       },
-    ]
-  }
+    ],
+  },
 };
