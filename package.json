@@ -7,14 +7,14 @@
   "module": "dist/es/index.js",
   "jsnext:main": "dist/es/index.js",
   "scripts": {
-    "postinstall": "cd dist || npm run build:lib",
-    "build:commonjs": "cross-env NODE_ENV=production cross-env BABEL_ENV=commonjs babel src --out-dir dist/commonjs --ignore examples/,test/",
-    "build:es": "cross-env NODE_ENV=production cross-env BABEL_ENV=es babel src --out-dir dist/es --ignore examples/,test/",
-    "build:umd": "cross-env NODE_ENV=production webpack --config webpack.config.js --bail",
+    "postinstall": "cd dist || (npm install --save && npm run build:lib)",
+    "build:commonjs": "npm run clean:commonjs && cross-env NODE_ENV=production cross-env BABEL_ENV=commonjs babel src --out-dir dist/commonjs --ignore examples/,test/",
+    "build:es": "npm run clean:es && cross-env NODE_ENV=production cross-env BABEL_ENV=es babel src --out-dir dist/es --ignore examples/,test/",
+    "build:umd": "npm run clean:umd && cross-env NODE_ENV=production webpack --config webpack.config.js --bail",
     "build:site": "cd site && npm run build",
     "build:examples": "cd examples/async && npm run build",
     "build:lib": "npm run build:commonjs && npm run build:es && npm run build:umd",
-    "build": "npm run clean:commonjs && npm run build:commonjs && npm run clean:es && npm run build:es && npm run clean:umd && npm run build:umd && npm run build:site && npm run build:examples",
+    "build": "npm run build:commonjs && npm run build:es && npm run build:umd && npm run build:site && npm run build:examples",
     "clean:commonjs": "rimraf dist/commonjs",
     "clean:coverage": "rimraf coverage",
     "clean:es": "rimraf dist/es",
@@ -54,7 +54,7 @@
     "lodash.pick": "^4.4.0",
     "lodash.pickby": "^4.6.0",
     "lodash.values": "^4.3.0",
-    "prop-types": "^15.6.1",
+    "prop-types": "^15.6.2",
     "superagent": "^3.8.3"
   },
   "peerDependencies": {
@@ -62,7 +62,7 @@
     "redux": ">=2.0.0"
   },
   "devDependencies": {
-    "babel-cli": "6.8.0",
+    "babel-cli": "6.26.0",
     "babel-core": "^6.26.3",
     "babel-eslint": "^7.1.1",
     "babel-loader": "^6.2.0",
