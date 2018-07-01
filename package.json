@@ -1,6 +1,6 @@
 {
   "name": "redux-query",
-  "version": "2.3.1-rc.2",
+  "version": "2.3.1-rc.3",
   "description": "A library for querying and managing network state in React/Redux applications",
   "homepage": "https://github.com/amplitude/redux-query",
   "main": "dist/commonjs/index.js",
@@ -8,9 +8,9 @@
   "jsnext:main": "dist/es/index.js",
   "scripts": {
     "postinstall": "cd dist || (mkdir ./dist && npm run build:lib)",
-    "build:commonjs": "npm run clean:commonjs && cross-env NODE_ENV=production cross-env BABEL_ENV=commonjs babel src --out-dir dist/commonjs --ignore examples/,test/",
-    "build:es": "npm run clean:es && cross-env NODE_ENV=production cross-env BABEL_ENV=es babel src --out-dir dist/es --ignore examples/,test/",
-    "build:umd": "npm run clean:umd && cross-env NODE_ENV=production webpack --config webpack.config.js --bail",
+    "build:commonjs": "npm run clean:commonjs && NODE_ENV=production BABEL_ENV=commonjs babel src --out-dir dist/commonjs --ignore examples/,test/",
+    "build:es": "npm run clean:es && NODE_ENV=production BABEL_ENV=es babel src --out-dir dist/es --ignore examples/,test/",
+    "build:umd": "npm run clean:umd && NODE_ENV=production webpack --config webpack.config.js --bail",
     "build:site": "cd site && npm run build",
     "build:examples": "cd examples/async && npm run build",
     "build:lib": "npm run build:commonjs && npm run build:es && npm run build:umd",
@@ -25,7 +25,7 @@
     "prebuild": "npm run lint",
     "predeploy": "npm run build:site",
     "lint": "eslint src test --fix",
-    "test:cov": "cross-env NODE_ENV=test nyc npm test",
+    "test:cov": "NODE_ENV=test nyc npm test",
     "test": "mocha --compilers js:babel-core/register --reporter spec test/**/*.test.js"
   },
   "repository": {
@@ -43,7 +43,6 @@
   "license": "MIT",
   "dependencies": {
     "backo": "^1.1.0",
-    "cross-env": "^1.0.7",
     "invariant": "^2.2.0",
     "json-stable-stringify": "^1.0.0",
     "lodash.difference": "^4.5.0",
