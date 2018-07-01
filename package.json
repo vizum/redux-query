@@ -7,7 +7,7 @@
   "module": "dist/es/index.js",
   "jsnext:main": "dist/es/index.js",
   "scripts": {
-    "install": "npm run build:lib",
+    "postinstall": "cd dist || npm run build:lib",
     "build:commonjs": "npm run clean:commonjs && cross-env NODE_ENV=production cross-env BABEL_ENV=commonjs babel src --out-dir dist/commonjs --ignore examples/,test/",
     "build:es": "npm run clean:es && cross-env NODE_ENV=production cross-env BABEL_ENV=es babel src --out-dir dist/es --ignore examples/,test/",
     "build:umd": "npm run clean:umd && cross-env NODE_ENV=production webpack --config webpack.config.js --bail",
