@@ -1,6 +1,7 @@
-## 2.3.1
+## 2.3.2
 
 - Fix "abort of undefined" error when cleaning request cache manually (Simek [3dfcce79](https://github.com/vizum/redux-query/commit/3dfcce79))
+- Improve build process and bump various dependencies (Simek)
 
 ## 2.3.0
 
