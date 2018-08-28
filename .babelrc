@@ -2,11 +2,12 @@
     "presets": [
         "@babel/preset-react",
         [
-            "@babel/preset-stage-2",
+            "@babel/preset-env",
             {
-                "decoratorsLegacy": true
+                "targets": {
+                    "browsers": ["last 2 versions", "> 4%", "ie 11"]
+                }
             }
-        ],
-        "@babel/preset-env"
+        ]
     ]
 }
