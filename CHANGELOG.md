@@ -1,3 +1,7 @@
+## 2.3.1
+
+- Fix "abort of undefined" error when cleaning request cache manually (Simek [3dfcce79](https://github.com/vizum/redux-query/commit/3dfcce79))
+
 ## 2.3.0
 
 - Add `duration` to `_SUCCESS` and `_FAILURE` redux actions (blazzy [#92](https://github.com/amplitude/redux-query/pull/92))
